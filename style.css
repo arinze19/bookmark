@@ -1,0 +1,663 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Nunito','futura md bt', monospace;
+}
+
+                                /* Re-usable classes */
+
+
+.purple {
+    color: deeppink;
+}
+
+.lead-text {
+    font-size: 38px;
+}
+
+.white {
+    color: #fff;
+}
+
+.x-large {
+    font-size: 37px;
+}
+
+.para {
+    line-height: 1.5em;
+    font-size: 22px;
+}
+
+.sub-para {
+    font-size: 18px;
+    line-height: 1.5em;
+}
+
+                                /* end of Re-usble classes */
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.white {
+    color: #fff;
+}
+
+                                /* navigations */
+
+#toggle.on .one {
+    transform: rotate(45deg) translateX(2px) translateY(4px);
+}
+
+#toggle.on .two {
+    opacity: 0;
+}
+
+#toggle.on .three {
+    transform: rotate(-45deg) translateX(8px) translateY(-10px);
+}
+
+#resize li {
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 50px;
+    font-weight: 200;
+    transition: all 0.3s ease-out;
+}
+
+#resize {
+    z-index: 1;
+    top: 0;
+    position: fixed;
+    background: #000;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 1s ease-out;
+    display: table;
+    padding-top: 6em;
+}
+
+#resize li a {
+    color: #fff;
+}
+
+#resize.active {
+    visibility: visible;
+    opacity: 0.99;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000;
+    padding: .5em;
+    position: fixed;
+    z-index: 2;
+    height: 70px;
+    width: 100%;
+}
+
+#toggle {
+    padding: 1em;
+    z-index: 999;
+}
+
+.cta p {
+    color: #fff;
+    font-size: 10px;
+    line-height: .5em;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+}
+
+
+            /* Minor adjustment to counter the size of the head logo */
+
+
+
+.menu-icon {
+    width: 30px;
+    height: 1px;
+    margin-top: 4px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+header {
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+
+                                /* header images and other animations */
+
+@keyframes motion {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+header img {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+}
+
+
+                                /* potrait styling */
+
+
+.potrait2 {
+    transform: translate(50%, 50%);
+    opacity: 0;
+    left: 50%;
+    top: 30%;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 2s; 
+}
+ 
+.potrait1 {
+    transform: translate(50%, 50%);
+    opacity: 0;
+    left: 30%;
+    top: 20%;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 4s;
+}
+
+.potrait3 {
+    opacity: 0;
+    left: 0%;
+    top: 0%;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 8s;
+}
+
+
+
+.potrait4 {
+    transform: translate(40%, 40%);
+    opacity: 0;
+    left: 13%;
+    top: 40%;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 10s; 
+}
+
+.potrait5 {
+    transform: translate(10%, 10%);
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 6s;
+}
+
+.potrait6 {
+    transform: translate(20%, 20%);
+    opacity: 0;
+    right: 10%;
+    top: 10%;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 15s;
+}
+
+.potrait7 {
+    transform: translate(20%, 20%);
+    left: 20%;
+    top: 5%;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 14s;
+}
+
+.potrait8 {
+    transform: translate(0, 10%);
+    left: 0%;
+    top: 25%;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 4s;
+}
+
+.potrait9 {
+    transform: translate(50%, 10%);
+    right: 50%;
+    left: 50%;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 19s;
+}
+
+.potrait10 {
+    transform: translate(10%, 10%);
+    right: 10%;
+    bottom: 10%;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 10s;
+}
+
+.potrait11 {
+    transform: translate(50%, 50%);
+    left: 35%;
+    bottom: 5%;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 6s;
+}
+
+.potrait12 {
+    transform: translate(10%, 10%);
+    left: 5;
+    bottom: 0;
+    opacity: 0;
+    transition: 3s;
+    animation: motion 5s infinite;
+    animation-delay: 7s;
+} 
+
+                                /* Header text section */
+
+.header-text {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-family: 'futura md bt', monospace;
+}
+
+.header-text h1 {
+    font-size: 37px;
+    font-weight: 800;
+    line-height: 15px;
+}
+
+.header-text p {
+    font-size: 23px;
+}
+
+
+
+
+                                /* About Page */
+
+
+.aboutImage {
+    background: url('./images/pexels-photo-1857129.jpeg') no-repeat 20% 20%;
+    background-size: cover;
+    height: 75vh;
+}
+
+.content {
+    padding: 3em;
+}
+
+.content .align {
+    text-align: left;
+}
+
+.content hr {
+    width: 30%;
+    height: 3px;
+    border: none;
+    background-color: #000;
+}
+
+.content h2 {
+    text-align: center;
+}
+
+
+.flex-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+
+.product-image {
+    width: 45%;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-description {
+    width: 50%;
+}
+
+.lwys {
+    padding: 2em;
+    color: white;
+    background-color: #000;
+}
+
+.lwys a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.lwys h1 {
+    text-align: center;
+}
+
+.lwys-cta {
+    width: 50%;
+}
+
+footer {
+    text-align: center;
+}
+
+.social {
+    width: 100px;
+    height: 50px;
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    transition: 2s;
+}
+
+.social img {
+    width: 30px;
+    height: 30px;
+    margin: 1em 2em;
+}
+
+
+                                /* Contact page */
+
+.contactImage {
+    background: url('./images/pexels-photo-1850313.jpeg') no-repeat 50% 50%;
+    background-size: cover;
+    height: 80vh;
+}
+
+.feedback {
+    width: 50%;
+    background-color: #000;
+    color: #fff;
+    margin: 0 auto;
+    padding: 2em;
+    text-align: center;
+}
+
+.connect {
+    margin-left: 1em;
+}
+
+
+
+                                /* gallery */
+
+.gallery {
+    height: auto;
+}
+
+.gallery-item {
+    display: inline-grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 400px;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.gallery-item img {
+    width: 95%;
+    height: 80%;
+    border-radius: 5px;
+}
+
+.gallery-item img:hover {
+    opacity: 0.7;
+}
+
+.description hr {
+    width: 30%;
+    height: 3px;
+    background-color: black;
+    margin-left: 0;
+}
+
+.description {
+    padding: 1em;
+}
+
+.display-1 {
+    margin: 0 auto;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 500px;
+    max-width: 700px;
+    height: 480px;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.modal-content, #caption {
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    } to {
+        transform: scale(1);
+    }
+}
+
+.close {
+    position: absolute;
+    top: 20%;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media(width: 768px){
+    .gallery-item img {
+        height: 250px;
+    }
+
+    .product-image {
+        height: 250px;
+    }
+}
+
+@media(max-width: 700px){
+    .modal-content {
+        width: 80%;
+        height: 250px;
+    }
+}
+
+                                /* Responsiveness Mobile and Co */
+
+
+
+@media(max-width: 763px){
+
+    .modal-content {
+        width: 250px;
+        height: 250px;
+    }
+
+    .close {
+        top: 10%;
+        right: 30px;
+    }
+
+    .gallery-item {
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .gallery-item img {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 1em;
+    }
+
+    .feedback {
+        width: 80%;
+        padding: 1em;
+    }
+
+    .x-large {
+        font-size: 27px;
+    }
+
+    header img {
+        width: 150px;
+        height: 150px;
+    } 
+
+    .header-text {
+        left: 50%;
+        text-align: center;
+        width: 80%;
+    }
+
+    .header-text h1 {
+        font-size: 30px;
+        line-height: 24px;
+    }
+
+
+    
+                                /* About page responsiveness */
+
+    .flex-1 {
+    display: block;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    }
+
+    .product-image {
+        width: 90%;
+        height: 250px;
+        overflow: hidden;
+        border: 1px solid #000;
+        margin: 0 auto;
+    }
+    
+    .product-image img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .product-description {
+        width: 90%;
+    }
+
+    .lwys p {
+        font-size: 21px;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+}
+
+.preview {
+    width: 250px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* iphone 5 responsiveness */
+
+
+@media(width: 320px){
+    .gallery-item {
+        display: block;
+        width: 60%;
+        margin: 0 2em;
+    }
+}
+

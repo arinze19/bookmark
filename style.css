@@ -299,7 +299,6 @@ header img {
     top: 50%;
     left: 30%;
     transform: translate(-50%, -50%);
-    font-family: 'futura md bt', monospace;
 }
 
 .header-text h1 {
@@ -453,9 +452,9 @@ footer {
     border-radius: 5px;
 }
 
-.gallery-item img:hover {
+/* .gallery-item img:hover {
     opacity: 0.7;
-}
+} */
 
 .description hr {
     width: 30%;

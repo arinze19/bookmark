@@ -452,9 +452,9 @@ footer {
     border-radius: 5px;
 }
 
-/* .gallery-item img:hover {
+.gallery-item img:hover {
     opacity: 0.7;
-} */
+}
 
 .description hr {
     width: 30%;

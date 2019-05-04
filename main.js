@@ -33,22 +33,33 @@ if(hello){
 }
 
 
-                        // gallery modal 
+//                         // gallery modal 
 
-var modal = document.getElementById('myModal');
-var image =  document.querySelectorAll('.gallery-item img')
-var modalImg =  document.getElementById('img01');
-var captionText =  document.getElementById('caption');
-var span =  document.getElementsByClassName('close')[0];
+// var modal = document.getElementById('myModal');
+// var image =  document.querySelectorAll('.gallery-item img')
+// var modalImg =  document.getElementById('img01');
+// var captionText =  document.getElementById('caption');
+// var span =  document.getElementsByClassName('close')[0];
 
-image.forEach(i => {
-    i.addEventListener('click', function(){
-    modal.style.display = 'block';
-    modalImg.src = this.src;
-    })
-})
+// image.each(function(){
+//         var $this = $(this);
+//         $this.on('click', function(){
+//             modal.style.display = 'block';
+//             modalImg.src = $this.src
+//         })
+//     })
 
-span.addEventListener('click', function(){
-    modal.style.display = 'none';
-})
+// span.addEventListener('click', function(){
+//     modal.style.display = 'none';
+// })
+
+
+// forEach(i => {
+//     i.addEventListener('click', function(){
+//     modal.style.display = 'block';
+//     modalImg.src = this.src;
+//     })
+// })
+
+
 

@@ -169,11 +169,7 @@
     function createBookmark(e) {
         e.preventDefault();
 
-        // add a new bookmark to the bookmarks
-        // const title        = bookmarkInput.value;
-        // const bookmark     = {
-        //     title: title
-        // };     
+        const title        = bookmarkInput.value;   
         const bookmark     = document.createElement('a');
         bookmark.className = 'bookmark';   //over rides all other classes
         bookmark.innerText = title;
@@ -182,17 +178,8 @@
         bookmarksList.appendChild(bookmark)
 
         bookmarkForm.reset()
-
-
-
-        // console.log(bookmark)
     }
 
-
-
-    // function fillBookmarksList(bookmarks = []) {
-    //     // const bookmarksHtml = bookmarks.forEach
-    // }
 </script>
 </body>
 </html>

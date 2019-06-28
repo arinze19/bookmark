@@ -4,104 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>stopwatch</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>Bookmark application</title>
+    <link rel="stylesheet" href="../Loc8r/public/bootstrap/css/bootstrap.min.css">
     <style>
-        body, .jumbotron { padding: 30px }
+        body, .jumbotron { padding: 30px; } 
 
-        .timer {
-            font-size: 60px;
+        body {
+            /* background-image: url('toucan.png');
+            background-size: contain;
+            background-repeat: no-repeat; */
+            background-color: rgb(247, 225, 131);
+
+        }
+
+        .content {
+            font-size: 19px;
+            line-height: 1.5;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .floater {
+            background: #fff;
+            border-radius: 5px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
+            margin-bottom: 30px;
+            z-index: 11;
+        }
+
+        .floater input[type=text] {
+            padding: 30px 20px;
+            border: none;
+            box-shadow: none;
+            font-size: 14px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
+        }
+
+        .floater-bottom {
+            padding: 6px 10px 8px;
+            text-align: right;
+            border-top: 1px solid #ddd;
+        }
+
+        .floater-bottom button {
+            padding: 4px 8px;
+            font-size: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.80);
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 0.3s ease all;
+            z-index: 10;
+
+            /*so overlay wont handle any click events */
+            pointer-events: none;  
+        }
+
+        .bookmarks-list {
+            position: relative;
+            z-index: 9;
+        }
+
+        body.show-floater .floater {
+            transform: scale(1.1);
+        }
+
+        body.show-floater .floater input[type=text] {
+            padding: 50px 20px;
+            font-size: 18px;
+        }
+
+        body.show-floater .overlay {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ================= */
+
+        .bookmark {
+            display: block;
+            background: #fff;
+            color: #999;
+            padding: 20px;
+            transition: 0.3s ease all;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px
+        }
+
+        .bookmark:hover {
+            color: #1ce;
+            text-decoration: none;
+        }
+        .bookmark:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .bookmark:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom: 0;
         }
     </style>
 </head>
 <body>
-    <div class="jumbotron text-center">
+    <div class="overlay"></div>
 
-        <!-- timer -->
-        <div class="timer">
-            <span class="minutes">00</span> : <span class="seconds">00</span>
-        </div>
-
-        <!-- timer buttons -->
-        <div class="timer-buttons">
-            <button class="btn btn-lg btn-success" data-action="start">
-                start
-            </button>
-            <button class="btn btn-lg btn-danger" data-action="stop">
-                stop
-            </button>
-            <button class="btn btn-lg btn-link btn-block" data-action="reset">
-                Reset
-            </button>
-        </div>
+    <div class="floater content">
+        <form class="bookmark-form">
+            <div class="floater-top">
+                <input type="text" class="form-control" placeholder="what's on your mind?">
+            </div>
+            
+            <div class="floater-bottom">
+                <button type="submit" class="btn btn-primary btn-sm">Add</button>
+            </div>
+        </form>
     </div>
 
-
-    <script>
-        const startButton = document.querySelector('[data-action="start"]');
-        const resetButton = document.querySelector('[data-action="reset"]');
-        const stopButton  = document.querySelector('[data-action="stop"]');
-        const minutes     = document.querySelector('.minutes');
-        const seconds     = document.querySelector('.seconds');
-        let timerTime     = 00;
-        let isRunning = false;
-        let interval;
+    <div class="bookmarks-list content"></div>
 
 
+<script>
+    const input   = document.querySelector("input[type=text]");
+    const overlay = document.querySelector('.overlay');
+    const floater = document.querySelector('.floater');
+    const body    = document.body;
+
+    input.addEventListener('focusin', focus)
+    input.addEventListener('focusout', outOfFocus)
 
 
+    // listener
+    function focus(){
+        body.classList.add('show-floater')
+    }
 
-
-        function pad(number){
-            return number < 10 ? '0' + number : number
-            //  if(number < 10){
-            //      return '0' + number
-            //  } else {
-            //      return number
-            //  }
+    function outOfFocus() {
+        if(body.classList.contains('show-floater')){
+            body.classList.remove('show-floater')
         }
+    }
+
+    // ====================================================
+
+    // localStorage.setItem('my_thing', 'something');
+
+    const bookmarkForm  = document.querySelector('.bookmark-form');
+    const bookmarksList = document.querySelector('.bookmarks-list');
+    const bookmarkInput = bookmarkForm.querySelector('input[type="text"]');
+    // const bookmarks     = []
+
+
+    bookmarkForm.addEventListener('submit', createBookmark)
+
+
+    function createBookmark(e) {
+        e.preventDefault();
+
+        // add a new bookmark to the bookmarks
+        const title        = bookmarkInput.value;
+        const bookmark     = {
+            title: title
+        };
+
+        bookmarks.push(bookmark)
+        fillBoolmarksList(bookmark)      
+        const bookmark     = document.createElement('a');
+        bookmark.className = 'bookmark';   //over rides all other classes
+        bookmark.innerText = title;
+        bookmark.href      = '#';
+        bookmark.target    = '_blank';
+        bookmarksList.appendChild(bookmark)
+
+        bookmarkForm.reset()
 
 
 
-
-        startButton.addEventListener('click', startTimer);
-        resetButton.addEventListener('click', resetTimer);
-        stopButton.addEventListener('click', stopTimer);
-
-        function startTimer(){
-            if(isRunning) return
-            isRunning = true;
-            interval = setInterval(counter, 1000)
-        }
-
-        function resetTimer(){
-            stopTimer()
-            timerTime = 0
-            seconds.innerText = '00';
-            minutes.innerText = '00';
-            
-        }
-
-        function stopTimer(){
-            isRunning = false;
-            clearInterval(interval)
-        }
+        // console.log(bookmark)
+    }
 
 
 
-        function counter(){
-            timerTime ++;
-            const numOfMinutes = Math.floor(timerTime / 60);
-            const numOfSeconds = timerTime % 60;
-
-            seconds.innerText  = pad(numOfSeconds);
-            minutes.innerText  = pad(numOfMinutes);
-        }
-
-
-
-
-
-    </script>
+    // function fillBookmarksList(bookmarks = []) {
+    //     // const bookmarksHtml = bookmarks.forEach
+    // }
+</script>
 </body>
 </html>

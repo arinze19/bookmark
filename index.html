@@ -4,295 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bookmark application</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <style>
-        body, .jumbotron { padding: 30px; } 
-
-        body {
-            /* background-image: url('toucan.png');
-            background-size: contain;
-            background-repeat: no-repeat; */
-            background-color: rgb(247, 225, 131);
-
-        }
-
-        .content {
-            font-size: 19px;
-            line-height: 1.5;
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .floater {
-            background: #fff;
-            border-radius: 5px;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
-            margin-bottom: 30px;
-            z-index: 11;
-        }
-
-        .floater input[type=text] {
-            padding: 30px 20px;
-            border: none;
-            box-shadow: none;
-            font-size: 14px;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
-        }
-
-        .floater-bottom {
-            padding: 6px 10px 8px;
-            text-align: right;
-            border-top: 1px solid #ddd;
-        }
-
-        .floater-bottom button {
-            padding: 4px 8px;
-            font-size: 10px;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: rgba(0,0,0,0.80);
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: 0.3s ease all;
-            z-index: 10;
-
-            /*so overlay wont handle any click events */
-            pointer-events: none;  
-        }
-
-        .bookmarks-list {
-            position: relative;
-            z-index: 9;
-        }
-
-        body.show-floater .floater {
-            transform: scale(1.1);
-        }
-
-        body.show-floater .floater input[type=text] {
-            padding: 50px 20px;
-            font-size: 18px;
-        }
-
-        body.show-floater .overlay {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* ================= */
-
-        .bookmark {
-            display: flex;
-            position: relative;
-            background: #fff;
-            color: #999;
-            padding: 20px;
-            transition: 0.3s ease all;
-            border-bottom: 1px solid #ddd;
-            font-size: 16px
-        }
-
-        .bookmark:hover {
-            color: #1ce;
-            text-decoration: none;
-        }
-        .bookmark:first-child {
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-
-        .bookmark:last-child {
-            border-bottom-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            border-bottom: 0;
-        }
-
-        .bookmark .img {
-            background-color: #ddd;
-            border-radius: 3px;
-            background-image: url('https://images.pexels.com/photos/2588641/pexels-photo-2588641.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
-            background-position: top center;
-            background-size: cover;
-            width: 120px;
-            height: 60px;
-            margin-right: 20px;
-        }
-
-        .bookmark .title {
-            display: flex;
-            align-items: center;
-        }
-
-        .bookmark .glyphicon-remove {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: rgba(255, 111, 111, 0.651);
-            font-size: 12px;
-            transition: 0.3s ease color;
-            cursor: pointer;
-        }
-
-        .bookmark:hover .glyphicon-remove {
-            color: rgb(241, 15, 15);
-        }
-    </style>
+    <title>Welcome to colossus | Get potraits for your loved ones</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <meta name="description" content="An art studio specializing in ink and pencil art potraits and packaging.">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="overlay"></div>
-
-    <div class="floater content">
-        <form class="bookmark-form">
-            <div class="floater-top">
-                <input type="text" class="form-control" placeholder="what's on your mind?">
+    <header>
+        <nav>
+            <div class="cta">
+                <p>Quality</p>
+                <p>Art</p>
+                <p>Potraits</p>
             </div>
+
+            <a href="index.html">
+                <img src="./images/logo.png" alt="colossus art" class="logo">
+            </a>
             
-            <div class="floater-bottom">
-                <button type="submit" class="btn btn-primary btn-sm">Add</button>
+            <div id="toggle">
+                <div class="one menu-icon"></div>
+                <div class="two menu-icon"></div>
+                <div class="three menu-icon"></div>
             </div>
-        </form>
-    </div>
+        </nav>
 
-    <div class="bookmarks-list content"></div>
+        
+        <div class="header-text">
+            <h1>Welcome to Colossus Art</h1>
+            <p>Get potraits for your loved ones</p>
+            <a href="./gallery.html">View gallery &rarr;</a>
+        </div>
 
+        <!-- Navigations -->
 
-<script>
-    const input   = document.querySelector("input[type=text]");
-    const overlay = document.querySelector('.overlay');
-    const floater = document.querySelector('.floater');
-    const body    = document.body;
+        <div id="resize">
+            <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </div>
 
+        <!-- header images -->
 
-    const bookmarkForm  = document.querySelector('.bookmark-form');
-    const bookmarksList = document.querySelector('.bookmarks-list');
-    const bookmarkInput = bookmarkForm.querySelector('input[type="text"]');
-    const bookmarks     = JSON.parse(localStorage.getItem('bookmarks'))  || [];
-    const apiUrl        = 'https://opengraph.io/api/1.0/site';
-    const appId         = '58858c7bcf07b61e64257391';
-
-    // const myUrl         = encodeURIComponent('https://google.com');  //tudy later
-
-
-
-
-    fillBookmarksList(bookmarks) // fill bookmarks list from local storage on entering the page
-
-
-
- 
-
-    //=================================================================================== listeners
-    input.addEventListener('focusin', focus)
-    input.addEventListener('focusout', outOfFocus)
-
-
-    function focus(){
-        body.classList.add('show-floater')
-    }
-
-    function outOfFocus() {
-        if(body.classList.contains('show-floater')){
-            body.classList.remove('show-floater')
-        }
-    }
-
-
-
-    //=============================================== Form submission
-    bookmarkForm.addEventListener('submit', createBookmark)
-    bookmarksList.addEventListener('click', removeBookmark)
-
-
-    
-
-
-
-
-    //    =================================================================================== Bookmarks logic
-    function createBookmark(e) {
-        e.preventDefault();
-
-        const title  = bookmarkInput.value;  
-
-        if(title == '') return;
-        const url    = encodeURIComponent(bookmarkInput.value)
-
-
-        fetch(`${apiUrl}/${url}/?app_id=${appId}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-
-
-            const bookmark = {
-                title: data.hybridGraph.title,
-                image: data.hybridGraph.image,
-                link: data.hybridGraph.url
-            };
-
-            bookmarks.push(bookmark)   // add a new bookmark to the bookmarks
-            storeBookmarks(bookmarks)   // store bookmarks in local storage 
-            fillBookmarksList(bookmarks)  //update the bookmarks list
-            bookmarkForm.reset() //clears the input box for next value
-            })
-            .catch(error => {
-                alert('a problem occured, please check that your link is correct and try again')
-            })
-
-
-
-            // const bookmark     = document.createElement('a');
-            // bookmark.className = 'bookmark';   //over rides all other classes
-            // bookmark.innerText = title;
-            // bookmark.href      = '#';
-            // bookmark.target    = '_blank';
-            // bookmarksList.appendChild(bookmark)
-    }
-
-
-
-    function fillBookmarksList(bookmarks = []) {
-     
-        const bookmarksHtml = bookmarks.map((bookmark, i) => {    //map reformats the array
-            return `
-            <a href="${bookmark.link}" class="bookmark" target="_blank" data-id="${i}">
-              <div class="img" style="background-image:url('${bookmark.image}"></div>
-               ${bookmark.title} 
-              <span class="glyphicon glyphicon-remove"></span>
-             </a>
-             `;
-        }).join('')
-        bookmarksList.innerHTML = bookmarksHtml;
-        // let bookmarksHtml = '';
-        // for(let i = 0; i < bookmarks.length; i++){
-        //     bookmarksHtml += `<a href="#" class="bookmark"> ${bookmarks[i].title} </a>`;
-        // }
-        // bookmarksList.innerHTML = bookmarksHtml;  
-    }
-
-
-
-
-    function storeBookmarks(bookmarks = []){
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
-    }
-
-
-
-    function removeBookmark(e){
-        if(!e.target.matches('.glyphicon-remove')) return;  // error handling for empty input
-        const index = e.target.parentNode.dataset.id;  //find index
-        bookmarks.splice(index, 1)  //remove from bookmark
-        fillBookmarksList(bookmarks)  //fill the list
-        storeBookmarks(bookmarks)  //store back in local storage
-    }
-</script>
+        <img src="./images/potrait1.png" class ="potrait1" alt="colossus art">
+        <img src="./images/potrait2.png" class ="potrait2"  alt="colossus art">
+        <img src="./images/potrait3.png" class ="potrait3" alt="colossus art">
+        <img src="./images/potrait4.png" class ="potrait4" alt="colossus art">
+        <img src="./images/potrait5.png" class ="potrait5" alt="colossus art">
+        <img src="./images/potrait6.JPG" class ="potrait6" alt="colossus art">
+        <img src="./images/potrait7.JPG" class ="potrait7" alt="colossus art">
+        <img src="./images/potrait8.jpg" class ="potrait8" alt="colossus art">
+        <img src="./images/potrait9.JPG" class ="potrait9" alt="colossus art">
+        <img src="./images/potrait10.png" class ="potrait10" alt="colossus art">
+        <img src="./images/potrait11.JPG" class ="potrait11" alt="colossus art">
+        <img src="./images/potrait12.JPG" class ="potrait12" alt="colossus art">
+    </header>
+<script src="./index.js"></script>
 </body>
 </html>

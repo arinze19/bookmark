@@ -1,65 +1,115 @@
-var social = document.querySelector('.social a');
-var socialImage = document.querySelector('.social img');
-var hello = document.querySelector('.hello');
+const input   = document.querySelector("input[type=text]");
+const overlay = document.querySelector('.overlay');
+const floater = document.querySelector('.floater');
+const body    = document.body;
+
+
+const bookmarkForm  = document.querySelector('.bookmark-form');
+const bookmarksList = document.querySelector('.bookmarks-list');
+const bookmarkInput = bookmarkForm.querySelector('input[type="text"]');
+const bookmarks     = JSON.parse(localStorage.getItem('bookmarks'))  || [];
+const apiUrl        = 'https://opengraph.io/api/1.0/site';
+const appId         = '58858c7bcf07b61e64257391';
+
+// const myUrl         = encodeURIComponent('https://google.com');  //study later
 
 
 
-                                //social media link change function
 
-                                
-setInterval(function(){
-    var whatsapp = 'https://whatsapp.com/+2348138736226';
-    var insta = 'https://instagram.com/colossusart.co';
-    var whatsappImage = './images/whatsapp.png';
-    var instaImage = './images/insta.png';
-    if(social.href == insta){
-        social.href = whatsapp;
-        socialImage.src = whatsappImage;
-    } else {
-        social.href = insta;
-        socialImage.src = instaImage;
+fillBookmarksList(bookmarks) // fill bookmarks list from local storage on entering the page
+
+
+
+
+
+//=================================================================================== listeners
+input.addEventListener('focusin', focus)
+input.addEventListener('focusout', outOfFocus)
+
+
+function focus(){
+    body.classList.add('show-floater')
+}
+
+function outOfFocus() {
+    if(body.classList.contains('show-floater')){
+        body.classList.remove('show-floater')
     }
-}, 8000)
-
-                                //greeting function
-
-var greeting = ['Hello.','Hej.','Salut.','Yo.','Howdy.','How far.','Hola.','Aye.','Buenos.','Nnoo.','Sannu.']
-
-
-if(hello){
-    setInterval(function(){
-        hello.textContent = greeting[Math.round(Math.random() * greeting.length)];
-    }, 1000);
 }
 
 
-//                         // gallery modal 
 
-// var modal = document.getElementById('myModal');
-// var image =  document.querySelectorAll('.gallery-item img')
-// var modalImg =  document.getElementById('img01');
-// var captionText =  document.getElementById('caption');
-// var span =  document.getElementsByClassName('close')[0];
-
-// image.each(function(){
-//         var $this = $(this);
-//         $this.on('click', function(){
-//             modal.style.display = 'block';
-//             modalImg.src = $this.src
-//         })
-//     })
-
-// span.addEventListener('click', function(){
-//     modal.style.display = 'none';
-// })
-
-
-// forEach(i => {
-//     i.addEventListener('click', function(){
-//     modal.style.display = 'block';
-//     modalImg.src = this.src;
-//     })
-// })
+//=============================================== Form submission
+bookmarkForm.addEventListener('submit', createBookmark)
+bookmarksList.addEventListener('click', removeBookmark)
 
 
 
+
+
+
+
+//    =================================================================================== Bookmarks logic
+function createBookmark(e) {
+    e.preventDefault();
+
+    const title  = bookmarkInput.value;  
+
+    if(title == '') return;
+    const url    = encodeURIComponent(bookmarkInput.value)
+
+
+    fetch(`${apiUrl}/${url}/?app_id=${appId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+
+        const bookmark = {
+            title: data.hybridGraph.title,
+            image: data.hybridGraph.image,
+            link: data.hybridGraph.url
+        };
+
+        bookmarks.push(bookmark)   // add a new bookmark to the bookmarks
+        storeBookmarks(bookmarks)   // store bookmarks in local storage 
+        fillBookmarksList(bookmarks)  //update the bookmarks list
+        bookmarkForm.reset() //clears the input box for next value
+        })
+        .catch(error => {
+            alert('a problem occured, please check that your link is correct and try again')
+        })
+}
+
+
+
+function fillBookmarksList(bookmarks = []) {
+ 
+    const bookmarksHtml = bookmarks.map((bookmark, i) => {    //map reformats the array
+        return `
+        <a href="${bookmark.link}" class="bookmark" target="_blank" data-id="${i}">
+          <div class="img" style="background-image:url('${bookmark.image}"></div>
+           ${bookmark.title} 
+          <span class="glyphicon glyphicon-remove"></span>
+         </a>
+         `;
+    }).join('')
+    bookmarksList.innerHTML = bookmarksHtml;
+}
+
+
+
+
+function storeBookmarks(bookmarks = []){
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+}
+
+
+
+function removeBookmark(e){
+    if(!e.target.matches('.glyphicon-remove')) return;  // error handling for empty input
+    const index = e.target.parentNode.dataset.id;  //find index
+    bookmarks.splice(index, 1)  //remove from bookmark
+    fillBookmarksList(bookmarks)  //fill the list
+    storeBookmarks(bookmarks)  //store back in local storage
+}
